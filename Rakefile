@@ -4,14 +4,22 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "bhm_admin"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "sutto@sutto.net"
-    gem.homepage = "http://github.com/Sutto/bhm_admin"
-    gem.authors = ["Darcy Laycock"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
+    gem.name        = "bhm-admin"
+    gem.summary     = %Q{Simple, Rails 3 + Compass admin area.}
+    gem.description = %Q{Provides a reasonably dynamic and simple to use admin area for Rails 3 application. Built on a bunch of open source libraries.}
+    gem.email       = "sutto@sutto.net"
+    gem.homepage    = "http://github.com/Sutto/bhm_admin"
+    gem.authors     = ["Darcy Laycock"]
+    
+    gem.add_dependency "will_paginate"
+    gem.add_dependency "inherited_resources"
+    gem.add_dependency "show_for"
+    gem.add_dependency "compass", ">= 0.10.0.rc4"
+    gem.add_dependency "fancy-buttons"
+    gem.add_dependency "compass-960-plugin"
+    gem.add_dependency "compass-colors"
+    
+    gem.add_development_dependency "shoulda", ">= 0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
@@ -21,7 +29,7 @@ end
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
+  test.pattern = 'test/**/*_test.rb'
   test.verbose = true
 end
 
@@ -29,7 +37,7 @@ begin
   require 'rcov/rcovtask'
   Rcov::RcovTask.new do |test|
     test.libs << 'test'
-    test.pattern = 'test/**/test_*.rb'
+    test.pattern = 'test/**/*_test.rb'
     test.verbose = true
   end
 rescue LoadError

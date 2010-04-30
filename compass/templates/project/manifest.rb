@@ -1,0 +1,1 @@
+stylesheet 'admin.sass', :media => 'screen, projection'
