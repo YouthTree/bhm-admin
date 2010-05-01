@@ -1,12 +1,16 @@
 class AdminController < ApplicationController
+
+  layout "admin"
   
   before_filter :require_admin_authentication
   around_filter :disable_attr_accessible
   
+  helper *BHM::Admin.helper_classes
+  
   protected
   
   def disable_attr_accessible
-    AttrAccessibleScoping.disable { yield }
+    BHM::Admin::AttrAccessibleScoping.disable { yield }
   end
   
   def require_admin_authentication

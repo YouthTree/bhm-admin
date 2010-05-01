@@ -2,6 +2,10 @@ module BHM
   module Admin
     module SidebarHelper
       
+      def hide_sidebar!
+        content_for :sidebar, '&nbsp;'.html_safe
+      end
+      
       def collection_sidebar
         sidebar_menu(parent_sidebar_content + resources_sidebar_content)
       end
@@ -38,6 +42,32 @@ module BHM
 
       def current_parent_name
         sidebar_klass_name(parent_class).titleize
+      end
+      
+      def parent_sidebar_content
+        returning ActiveSupport::SafeBuffer.new do |content|
+          if respond_to?(:parent?) && parent?
+            parent_name = current_parent_name
+            content << ml("View #{parent_name}", parent_url)
+            content << ml("Edit #{parent_name}", File.join(parent_url, 'edit'))
+          end
+        end
+      end
+
+      def resources_sidebar_content(name = current_resource_name)
+        returning ActiveSupport::SafeBuffer.new do |content|
+          content << ml("All #{name.pluralize}", collection_url)
+          content << ml("Add #{name}", new_resource_url)
+        end
+      end
+
+      def resource_sidebar_content(name = current_resource_name)
+        returning ActiveSupport::SafeBuffer.new do |content|
+          content << ml("View #{name}", resource_url)
+          content << ml("Edit #{name}", edit_resource_url)
+          content << ml("Remove #{name}", resource_url, :method => :delete,
+            :confirm => BHM::Admin.t("confirmation.destroy", :object_name => name))
+        end
       end
       
     end

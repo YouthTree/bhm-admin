@@ -9,4 +9,4 @@ en:
         edit: "Edit"
         destroy: "Remove"
       confirmation:
-        destroy: "Are you sure you wish to remove this {{object_name}}? This can't be reversed."
+        destroy: "Are you sure you wish to remove this {{object_name}admThis can't be reversed."

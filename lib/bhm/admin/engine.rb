@@ -2,9 +2,9 @@ module BHM
   module Admin
     class Engine < Rails::Engine
             
-      paths.config.locales     = BHM::Admin.root.join('config', 'locales')
-      paths.config.controllers = BHM::Admin.root.join('app', 'controller')
-      paths.config.views       = BHM::Admin.root.join('app', 'views')
+      # paths.config.locales     = BHM::Admin.root.join('config', 'locales')
+      # paths.config.controllers = BHM::Admin.root.join('app', 'controller')
+      # paths.config.views       = BHM::Admin.root.join('app', 'views')
       
       initializer :configure_compass do
       end

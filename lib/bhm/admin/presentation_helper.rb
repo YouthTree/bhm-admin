@@ -18,7 +18,7 @@ module BHM
         items = [
           ml(BHM::Admin.t("buttons.show"), resource_url(r)),
           ml(BHM::Admin.t("buttons.edit"), edit_resource_url(r)),
-          ml(BHM::Admin.t("buttons.remove"), resource_url(r), :method => :delete,
+          ml(BHM::Admin.t("buttons.destroy"), resource_url(r), :method => :delete,
           :confirm => BHM::Admin.t("confirmation.destroy", :object_name => name))
         ]
         if blk.present?
@@ -43,6 +43,16 @@ module BHM
         name = current_resource_name
         inner = content_tag :td, BHM::Admin.t(:empty_row, :object_name => name.downcase, :plural_object_name => name.pluralize.downcase), :colspan => (size + 1)
         content_tag :tr, inner, :class => 'empty'
+      end
+      
+      def humanized_errors_on(object)
+        if object.errors[:base].present?
+          prefix       = "This #{object.class.model_name.human}"
+          errors       = content_tag(:p, "Please correct the following errors before continuing:")
+          inner_errors = object.errors[:base].map { |e| content_tag(:li, e) }.sum(ActiveSupport::SafeBuffer.new)
+          errors      << content_tag(:ul, inner_errors)
+          content_tag(:div, errors, :class => 'resource-base-errors')
+        end
       end
       
     end
