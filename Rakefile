@@ -7,10 +7,10 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name        = "bhm-admin"
-    gem.summary     = %Q{Simple, Rails 3 + Compass admin area.}
+    gem.summary     = %Q{General Admin Area stuff extracted from the big-help-mob web application.}
     gem.description = %Q{Provides a reasonably dynamic and simple to use admin area for Rails 3 application. Built on a bunch of open source libraries.}
     gem.email       = "sutto@sutto.net"
-    gem.homepage    = "http://github.com/Sutto/bhm_admin"
+    gem.homepage    = "http://github.com/YouthTree/bhm-admin"
     gem.authors     = ["Darcy Laycock"]
     gem.version     = BHM::Admin::VERSION
     gem.add_dependency "will_paginate"
