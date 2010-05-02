@@ -5,23 +5,23 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bhm-admin}
-  s.version = "0.1.0"
+  s.version = "0.1.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Darcy Laycock"]
-  s.date = %q{2010-05-02}
+  s.date = %q{2010-05-03}
   s.description = %q{Provides a reasonably dynamic and simple to use admin area for Rails 3 application. Built on a bunch of open source libraries.}
   s.email = %q{sutto@sutto.net}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+     "README.md"
   ]
   s.files = [
     ".document",
      ".gitignore",
      "Gemfile",
      "LICENSE",
-     "README.rdoc",
+     "README.md",
      "Rakefile",
      "app/controllers/admin/base_controller.rb",
      "app/controllers/admin_controller.rb",
@@ -66,11 +66,11 @@ Gem::Specification.new do |s|
      "test/helper.rb",
      "test/test_bhm_admin.rb"
   ]
-  s.homepage = %q{http://github.com/Sutto/bhm_admin}
+  s.homepage = %q{http://github.com/YouthTree/bhm-admin}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
-  s.summary = %q{Simple, Rails 3 + Compass admin area.}
+  s.summary = %q{General Admin Area stuff extracted from the big-help-mob web application.}
   s.test_files = [
     "test/helper.rb",
      "test/test_bhm_admin.rb"
