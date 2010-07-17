@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{bhm-admin}
-  s.version = "0.1.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Darcy Laycock"]
-  s.date = %q{2010-05-03}
+  s.date = %q{2010-07-18}
   s.description = %q{Provides a reasonably dynamic and simple to use admin area for Rails 3 application. Built on a bunch of open source libraries.}
   s.email = %q{sutto@sutto.net}
   s.extra_rdoc_files = [
@@ -69,7 +69,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/YouthTree/bhm-admin}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.6}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{General Admin Area stuff extracted from the big-help-mob web application.}
   s.test_files = [
     "test/helper.rb",
@@ -80,7 +80,7 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<will_paginate>, [">= 0"])
       s.add_runtime_dependency(%q<inherited_resources>, [">= 0"])
       s.add_runtime_dependency(%q<show_for>, [">= 0"])
