@@ -1,2 +1,3 @@
-%h2 Menu
-= %w(index new create).include?(controller.action_name) ? collection_sidebar : object_sidebar
+- if controller.is_a?(Admin::BaseController)
+  %h2 Menu
+  = %w(index new create).include?(controller.action_name) ? collection_sidebar : object_sidebar
