@@ -10,7 +10,7 @@ module BHM
       end
       
       initializer :extend_activerecord do
-        ActiveRecord::Base.send :include, BHM::Admin::AttrAccessibleScoping
+        ActiveRecord::Base.send :include, BHM::Admin::AttrAccessibleScoping::ARMixin
       end
       
     end
