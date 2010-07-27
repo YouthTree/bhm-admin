@@ -3,7 +3,7 @@ require 'active_support'
 module BHM
   module Admin
     
-    VERSION = "0.1.4".freeze
+    VERSION = "0.2.0".freeze
     
     # Helpers for use in the admin area.
     autoload :SidebarHelper,         'bhm/admin/sidebar_helper'
@@ -30,6 +30,18 @@ module BHM
       [SidebarHelper, PresentationHelper, NestedFormHelper]
     end
     
+    def self.disable_attr_accessible(&blk)
+      AttrAccessibleScoping.disable(&blk)
+    end
+
+    def self.disable_attr_accessible!
+      AttrAccessibleScoping.disable!
+    end
+
+    def self.enable_attr_accessible!
+      AttrAccessibleScoping.enable!
+    end
+
     # Hook into rails.
     require 'bhm/admin/engine'            if defined?(Rails::Engine)
     require 'bhm/admin/compass_framework' if defined?(Compass)

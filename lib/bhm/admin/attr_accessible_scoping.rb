@@ -8,7 +8,11 @@ module BHM
         attr_accessor :verbose
 
         def disabled?
-          !!Thread.current[:attr_accessible_disabled]
+          !enabled?
+        end
+
+        def enabled?
+          !Thread.current[:attr_accessible_disabled]
         end
 
         def disable!
@@ -22,29 +26,40 @@ module BHM
         def disable
           disabled = disabled?
           disable! if !disabled
-          begin
-            yield if block_given?
-          ensure
-            enable! if disabled
-          end
+          yield if block_given?
+        ensure
+          enable! if disabled
+        end
+
+      end
+
+      class Sanitizer < ActiveModel::MassAssignmentSecurity::WhiteList
+
+        def deny?(attribute)
+          return false if BHM::Admin::AttrAccessibleScoping.disabled? || self.include?("all")
+          super
+        end
+
+        protected
+
+        def warn!(attrs)
+          super
+          raise UnassignableAttribute.new("Unable to assign attributes: #{attrs.join(", ")}")
         end
 
       end
 
       module ARMixin
 
-        def self.included(parent)
-          parent.alias_method_chain :remove_attributes_protected_from_mass_assignment, :global_disable
-        end
-
-        def remove_attributes_protected_from_mass_assignment_with_global_disable(attributes)
-          unless AttrAccessibleScoping.disabled? || (self.class.accessible_attributes && self.class.accessible_attributes.include?("all"))
-            trusted_attributes = Array(self.class.accessible_attributes)
-            attributes.each_pair do |k, v|
-              raise UnassignableAttribute, "The attribute #{k} can't be assigned on #{self.class.name}" unless trusted_attributes.include?(k.to_s.gsub(/\(\d+\w\)$/, ''))
+        def accessible_attributes
+          if _accessible_attributes.blank? || !_accessible_attributes.is_a?(BHM::Admin::AttrAccessibleScoping::Sanitizer)
+            existing = _accessible_attributes
+            self._accessible_attributes = BHM::Admin::AttrAccessibleScoping::Sanitizer.new.tap do |w|
+              w.logger = self.logger if self.respond_to?(:logger)
             end
+            self._accessible_attributes += existing if existing.present?
           end
-          attributes
+          _accessible_attributes
         end
 
       end
