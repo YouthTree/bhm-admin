@@ -3,7 +3,7 @@ require 'active_support'
 module BHM
   module Admin
     
-    VERSION = "0.2.0".freeze
+    VERSION = "0.2.1".freeze
     
     # Helpers for use in the admin area.
     autoload :SidebarHelper,         'bhm/admin/sidebar_helper'
