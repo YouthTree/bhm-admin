@@ -3,10 +3,10 @@ en:
   bhm:
     admin:
       blank_value: "Currently blank"
-      empty_row: "There are currently no {{plural_object_name}}."
+      empty_row: "There are currently no %{plural_object_name}."
       buttons:
         show: "View"
         edit: "Edit"
         destroy: "Remove"
       confirmation:
-        destroy: "Are you sure you wish to remove this {{object_name}}? This can't be reversed."
+        destroy: "Are you sure you wish to remove this %{object_name}? This can't be reversed."
