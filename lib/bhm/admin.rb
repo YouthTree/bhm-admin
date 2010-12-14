@@ -33,6 +33,10 @@ module BHM
     def self.disable_attr_accessible(&blk)
       AttrAccessibleScoping.disable(&blk)
     end
+    
+    def self.silence_attr_accessible(&blk)
+      AttrAccessibleScoping.silence(&blk)
+    end
 
     def self.disable_attr_accessible!
       AttrAccessibleScoping.disable!

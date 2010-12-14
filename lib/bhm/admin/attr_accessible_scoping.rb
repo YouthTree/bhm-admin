@@ -4,8 +4,18 @@ module BHM
       UnassignableAttribute = Class.new(StandardError)
 
       class << self
+        
+        def verbose?
+          !Thread.current[:attr_accessible_silent]
+        end
 
-        attr_accessor :verbose
+        def silent!
+          Thread.current[:attr_accessible_silent] = true
+        end
+
+        def verbose!
+          Thread.current[:attr_accessible_silent] = nil
+        end
 
         def disabled?
           !enabled?
@@ -24,11 +34,19 @@ module BHM
         end
 
         def disable
-          disabled = disabled?
-          disable! if !disabled
+          enabled = !disabled?
+          enable! if enabled
           yield if block_given?
         ensure
-          enable! if disabled
+          enable! if enabled
+        end
+        
+        def silence
+          verbose = verbose?
+          silent! if verbose
+          yield if block_given?
+        ensure
+          verbose! if verbose
         end
 
       end
@@ -36,7 +54,7 @@ module BHM
       class Sanitizer < ActiveModel::MassAssignmentSecurity::WhiteList
 
         def deny?(attribute)
-          return false if BHM::Admin::AttrAccessibleScoping.disabled? || self.include?("all")
+          return false if AttrAccessibleScoping.disabled? || self.include?("all")
           super
         end
 
@@ -44,7 +62,9 @@ module BHM
 
         def warn!(attrs)
           super
-          raise UnassignableAttribute.new("Unable to assign attributes: #{attrs.join(", ")}")
+          if AttrAccessibleScoping.verbose?
+            raise UnassignableAttribute.new("Unable to assign attributes: #{attrs.join(", ")}")
+          end
         end
 
       end
