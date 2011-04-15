@@ -14,7 +14,7 @@
     = yield :extra_head
 
   %body
-    #container
+    #container{:class => container_classes_css}
       %header= render :partial => 'admin/shared/header'
       = flash_messages :alert, :notice
 

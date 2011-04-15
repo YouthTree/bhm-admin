@@ -1,11 +1,23 @@
 module BHM
   module Admin
     module SidebarHelper
-      
+
+      def container_classes
+        @container_classes ||= []
+      end
+
+      def container_classes_css
+        container_classes.uniq.join(' ').presence
+      end
+
       def hide_sidebar!
         content_for :sidebar, '&nbsp;'.html_safe
       end
-      
+
+      def full_width_page!
+        container_classes << 'full-width'
+      end
+
       def collection_sidebar
         sidebar_menu(parent_sidebar_content + resources_sidebar_content)
       end
@@ -43,7 +55,7 @@ module BHM
       def current_parent_name
         sidebar_klass_name(parent_class).titleize
       end
-      
+
       def parent_sidebar_content
         with_safe_buffer do |content|
           if respond_to?(:parent?) && parent?
@@ -69,7 +81,7 @@ module BHM
             :confirm => BHM::Admin.t("confirmation.destroy", :object_name => name))
         end
       end
-      
+
       def with_safe_buffer(&blk)
         ActiveSupport::SafeBuffer.new.tap(&blk)
       end
