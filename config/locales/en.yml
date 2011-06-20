@@ -2,6 +2,7 @@
 en:
   bhm:
     admin:
+      header_title: "%{site_name} - Admin Area"
       blank_value: "Currently blank"
       empty_row: "There are currently no %{plural_object_name}."
       buttons:
@@ -10,3 +11,13 @@ en:
         destroy: "Remove"
       confirmation:
         destroy: "Are you sure you wish to remove this %{object_name}? This can't be reversed."
+      actions:
+        show: "View %{object_name}"
+        index: "List %{resource_name}"
+        destroy: "Remove %{object_name}"
+        create: "New %{object_name}"
+        edit: "Edit %{object_name}"
+        create: "Create %{object_name}"
+        update: "Update %{object_name}"
+      errors:
+        heading: "Please correct the following errors before continuing:"

@@ -1,0 +1,37 @@
+$grid-total-width: 960px
+$grid-column-padding: 10px
+
+=grid-width($total-width, $left-columns: 0, $right-columns: 0)
+  width: $total-width - ($left-columns + $right-columns) * $grid-column-padding
+  @if $left-columns != 0
+    margin-left: ($left-columns * $grid-column-padding)
+  @if $left-columns != 0
+    margin-right: ($right-columns * $grid-column-padding)
+
+#container
+  +grid-width($grid-total-width)
+
+#header-logo
+  +grid-width(200, 1, 1)
+
+#header-menu
+  +grid-width(760, 1, 1)
+
+footer, #flash-messages
+  +grid-width($grid-total-width)
+
+#content-container
+  +grid-width($grid-total-width)
+  +clearfix
+
+#container.full-width
+  #content
+    width: 960px
+    
+#container.with-sidebar
+  #content
+    float: left
+    +grid-width(760, 1, 1)
+  #sidebar
+    float: left
+    +grid-width(200, 1, 1)

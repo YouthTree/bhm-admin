@@ -13,16 +13,13 @@ begin
     gem.homepage    = "http://github.com/YouthTree/bhm-admin"
     gem.authors     = ["Darcy Laycock"]
     gem.version     = BHM::Admin::VERSION
-    gem.add_dependency "will_paginate"
     gem.add_dependency "inherited_resources"
     gem.add_dependency "show_for"
-    gem.add_dependency "compass", ">= 0.10.0.rc4"
-    gem.add_dependency "fancy-buttons"
-    gem.add_dependency "compass-960-plugin"
-    gem.add_dependency "compass-colors"
-    gem.add_dependency "jammit"
-    gem.add_dependency "will_paginate"
-    gem.add_development_dependency "shoulda", ">= 0"
+    gem.add_dependency "kaminari"
+    gem.add_dependency "simple-navigation"
+    gem.add_dependency "formtastic"
+    gem.add_dependency "youthtree-helpers"
+    gem.add_dependency "nestive"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

@@ -1,0 +1,271 @@
+// ---------------------------------------------
+// CSS3 GITHUB BUTTONS (Nicolas Gallagher)
+// Licensed under Unlicense
+// http://github.com/necolas/css3-github-buttons
+// ---------------------------------------------
+
+// (The next step would be to make compass sprite the icons)
+// This port was developed by @sj26 / Samuel Cochran
+
+@import compass
+
+.button
+  position: relative
+  overflow: visible
+  +inline-block
+  padding: 0.5em 1em
+  border: 1px solid #d4d4d4
+  margin: 0
+  text-decoration: none
+  text-shadow: 1px 1px 0 #fff
+  font: 11px / normal sans-serif
+  color: #333
+  white-space: nowrap
+  cursor: pointer
+  outline: none
+  +background(linear-gradient(color-stops(#f4f4f4, #ececec)), #ececec)
+  +background-clip
+  +border-radius(0.2em)
+  &:hover, &:focus, &:active, &.active
+    border-color: #3072b3
+    border-bottom-color: #2a65a0
+    text-decoration: none
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3)
+    color: #fff
+    +background(linear-gradient(color-stops(#599bdc, #3072b3)), #3c8dde)
+  &:active, &.active
+    border-color: #2a65a0
+    border-bottom-color: #3884CF
+    +background(linear-gradient(color-stops(#3072b3, #599bdc)), #3072b3)
+  &::-moz-focus-inner
+    padding: 0
+    border: 0
+  &.icon:before
+    content: ""
+    position: relative
+    top: 1px
+    float: left
+    width: 12px
+    height: 12px
+    margin: 0 0.75em 0 -0.25em
+    //background: url(bhm/admin/gh-icons.png) 0 99px no-repeat
+  &.arrowup.icon
+    &:before
+      background-position: 0 0
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px 0
+  &.arrowdown.icon
+    &:before
+      background-position: 0 -12px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -12px
+  &.arrowleft.icon
+    &:before
+      background-position: 0 -24px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -24px
+  &.arrowright.icon
+    &:before
+      float: right
+      margin: 0 -0.25em 0 0.5em
+      background-position: 0 -36px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -36px
+  &.approve.icon
+    &:before
+      background-position: 0 -48px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -48px
+  &.add.icon
+    &:before
+      background-position: 0 -288px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -288px
+  &.remove.icon
+    &:before
+      background-position: 0 -60px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -60px
+  &.log.icon
+    &:before
+      background-position: 0 -72px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -72px
+  &.calendar.icon
+    &:before
+      background-position: 0 -84px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -84px
+  &.chat.icon
+    &:before
+      background-position: 0 -96px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -96px
+  &.clock.icon
+    &:before
+      background-position: 0 -108px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -108px
+  &.settings.icon
+    &:before
+      background-position: 0 -120px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -120px
+  &.comment.icon
+    &:before
+      background-position: 0 -132px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -132px
+  &.fork.icon
+    &:before
+      background-position: 0 -144px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -144px
+  &.like.icon
+    &:before
+      background-position: 0 -156px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -156px
+  &.favorite.icon
+    &:before
+      background-position: 0 -348px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -348px
+  &.home.icon
+    &:before
+      background-position: 0 -168px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -168px
+  &.key.icon
+    &:before
+      background-position: 0 -180px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -180px
+  &.lock.icon
+    &:before
+      background-position: 0 -192px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -192px
+  &.unlock.icon
+    &:before
+      background-position: 0 -204px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -204px
+  &.loop.icon
+    &:before
+      background-position: 0 -216px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -216px
+  &.search.icon
+    &:before
+      background-position: 0 -228px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -228px
+  &.mail.icon
+    &:before
+      background-position: 0 -240px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -240px
+  &.move.icon
+    &:before
+      background-position: 0 -252px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -252px
+  &.edit.icon
+    &:before
+      background-position: 0 -264px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -264px
+  &.pin.icon
+    &:before
+      background-position: 0 -276px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -276px
+  &.reload.icon
+    &:before
+      background-position: 0 -300px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -300px
+  &.rss.icon
+    &:before
+      background-position: 0 -312px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -312px
+  &.tag.icon
+    &:before
+      background-position: 0 -324px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -324px
+  &.trash.icon
+    &:before
+      background-position: 0 -336px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -336px
+  &.user.icon
+    &:before
+      background-position: 0 -360px
+    &:hover:before, &:focus:before, &:active:before
+      background-position: -12px -360px
+  &.primary
+    font-weight: bold
+  &.danger
+    color: #900
+    &:hover, &:focus
+      border-color: #b53f3a
+      border-bottom-color: #a0302a
+      color: #fff
+      +background(linear-gradient(color-stops(#dc5f59, #b33630)), #dc5f59)
+    &:active, &.active
+      color: #fff
+      border-color: #a0302a
+      border-bottom-color: #bf4843
+      +background(linear-gradient(color-stops(#b33630, #dc5f59)), #b33630)
+  &.pill
+    +border-radius(50em)
+  &.disable
+    opacity: 0.5
+  &.big
+    font-size: 14px
+    &.icon:before
+      top: 0
+
+.button-group
+  +inline-block
+  list-style: none
+  padding: 0
+  margin: 0
+
+.button-group
+  li
+    float: left
+    padding: 0
+    margin: 0
+  .button
+    float: left
+    margin-left: -1px
+  > .button:not(:first-child):not(:last-child), li:not(:first-child):not(:last-child) .button
+    +border-radius(0)
+  > .button:first-child, li:first-child .button
+    margin-left: 0
+    +border-right-radius(0)
+  > .button:last-child, li:last-child > .button
+    +border-left-radius(0)
+  &.minor-group .button
+    border: 1px solid #d4d4d4
+    text-shadow: none
+    background-image: none
+    background-color: #fff
+    &:hover, &:focus
+      background-color: #599bdc
+    &:active
+      background-color: #599bdc
+      background-color: #3072b3
+    &.active
+      background-color: #3072b3
+    &.icon:before
+      opacity: 0.8
+
+// For mixing buttons and button groups, e.g., in a navigation bar
+.button-container
+  .button, .button-group
+    vertical-align: top

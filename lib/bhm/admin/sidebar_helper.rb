@@ -2,20 +2,13 @@ module BHM
   module Admin
     module SidebarHelper
 
-      def container_classes
-        @container_classes ||= []
+      def bhm_admin_sidebar_content
+        area :sidebar
       end
 
-      def container_classes_css
-        container_classes.uniq.join(' ').presence
-      end
-
-      def hide_sidebar!
-        content_for :sidebar, '&nbsp;'.html_safe
-      end
-
-      def full_width_page!
-        container_classes << 'full-width'
+      # Do we have a sidebar?
+      def bhm_admin_has_sidebar?
+        bhm_admin_sidebar_content.present? && show_sidebar?
       end
 
       def collection_sidebar
@@ -28,24 +21,17 @@ module BHM
         sidebar_menu(inner_menu)
       end
 
-      def menu_link(*args, &blk)
-        content_tag(:li, link_to(*args, &blk), :class => 'menu-item')
-      end
-      alias ml menu_link
-
       def sidebar_menu(inner_content = nil, &blk)
-        content = []
-        content << content_for(:sidebar_menu_start) if content_for?(:sidebar_menu_start)
-        content << inner_content.to_s if inner_content
-        content << capture(&blk) if blk.present?
-        content << content_for(:sidebar_menu_end) if content_for?(:sidebar_menu_end)
-        content = content_tag(:ul, content.join("").html_safe, :class => 'sidebar-menu')
-        content
+        default_content = with_safe_buffer do |buffer|
+          buffer << inner_content if inner_content.present?
+          buffer << capture(&blk) if block_given?
+        end
+        content_tag :ul, area(:inner_sidebar, default_content), :class => 'sidebar-menu'
       end
 
       def sidebar_klass_name(klass)
         controller_i18n_path = controller.controller_path.split("/").join(".")
-        BHM::Admin.t(controller_i18n_path.to_sym, :scope => :model_name, :default => klass.model_name.human)
+        ta(controller_i18n_path.to_sym, :scope => :model_name, :default => klass.model_name.human)
       end
 
       def current_resource_name
@@ -56,29 +42,37 @@ module BHM
         sidebar_klass_name(parent_class).titleize
       end
 
+      def container_classes_css
+        if bhm_admin_has_sidebar?
+          'with-sidebar'
+        else
+          'full-width'
+        end
+      end
+
       def parent_sidebar_content
         with_safe_buffer do |content|
           if respond_to?(:parent?) && parent?
             parent_name = current_parent_name
-            content << ml("View #{parent_name}", parent_url)
-            content << ml("Edit #{parent_name}", File.join(parent_url, 'edit'))
+            content << ml(ta('actions.show', :object_name => parent_url), parent_url)
+            content << ml(ta('actions.edit', :object_name => parent_url), "#{parent_url}/edit")
           end
         end
       end
 
       def resources_sidebar_content(name = current_resource_name)
         with_safe_buffer do |content|
-          content << ml("All #{name.pluralize}", collection_url)
-          content << ml("Add #{name}", new_resource_url)
+          content << ml(ta('actions.edit', :object_name => name.pluralize), collection_url)
+          content << ml(ta('actions.new', :object_name => name), new_resource_url)
         end
       end
 
       def resource_sidebar_content(name = current_resource_name)
         with_safe_buffer do |content|
-          content << ml("View #{name}", resource_url)
-          content << ml("Edit #{name}", edit_resource_url)
-          content << ml("Remove #{name}", resource_url, :method => :delete,
-            :confirm => BHM::Admin.t("confirmation.destroy", :object_name => name))
+          content << ml(ta('actions.show', :object_name => name), resource_url)
+          content << ml(ta('actions.edit', :object_name => name), edit_resource_url)
+          content << ml(ta('actions.destroy', :object_name => name), resource_url, :method => :delete,
+            :confirm => ta("confirmation.destroy", :object_name => name))
         end
       end
 

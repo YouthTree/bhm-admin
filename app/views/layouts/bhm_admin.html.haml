@@ -1,0 +1,32 @@
+!!! 5
+%html{:lang => "en", :dir => "ltr"}
+  %head
+    %title= BHM::Admin.t :header_title, :site_name => BHM::Admin.site_name
+    = csrf_meta_tag
+
+    = area :head do
+
+      = area :stylesheets do
+        = stylesheet_link_tag 'bhm-admin', :media => 'screen, projection'
+      = area :javascripts do
+        = javascript_include_tag 'bhm-admin'
+      = yield :extra_head
+
+
+
+  %body
+    #container{:class => container_classes_css}
+      %header= area :header, render(:partial => 'admin/shared/header')
+      = flash_messages :alert, :notice
+
+      %section#content-container
+        %section#content= area :content, yield
+        - if bhm_admin_has_sidebar?
+          %section#sidebar
+            = area :sidebar do
+              = render :partial => 'admin/shared/sidebar'
+
+      %footer
+        = area :foooter do
+          = render :partial => 'admin/shared/footer'
+          = yield :extra_footer
