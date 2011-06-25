@@ -15,7 +15,13 @@ module BHM
     class << self
       attr_accessor :site_name
     end
-    self.site_name ||= "Your Website"
+    self.site_name ||= "BHM Admin"
+
+    def self.navigation(&blk)
+      SimpleNavigation::Configuration.run do |navigation|
+        navigation.items(&blk)
+      end
+    end
 
     def self.t(*args)
       options = args.extract_options!

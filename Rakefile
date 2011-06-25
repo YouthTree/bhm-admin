@@ -16,7 +16,7 @@ begin
     gem.add_dependency "inherited_resources"
     gem.add_dependency "show_for"
     gem.add_dependency "kaminari"
-    gem.add_dependency "simple-navigation"
+    gem.add_dependency "navigasmic"
     gem.add_dependency "formtastic"
     gem.add_dependency "youthtree-helpers"
     gem.add_dependency "nestive"

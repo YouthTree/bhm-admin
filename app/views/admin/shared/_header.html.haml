@@ -2,6 +2,7 @@
   %h1= BHM::Admin.site_name
 
 #header-menu
+  = render_navigation
   %ul
     = render :partial => 'admin/shared/sections'
     = ml "View Site &raquo;".html_safe, :root, :id => 'view-site-link'
